@@ -12,7 +12,7 @@
     <PackageReference Include="coverlet.collector" Version="3.0.2" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="109.0.5414.7400" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="123.0.6312.8600" />
     <PackageReference Include="Unicorn.UI.Core" Version="3.1.0" />
   </ItemGroup>
 

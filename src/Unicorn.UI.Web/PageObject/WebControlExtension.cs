@@ -16,6 +16,7 @@ namespace Unicorn.UI.Web.PageObject
         /// </summary>
         /// <param name="control">Control instance</param>
         /// <returns>true - if control exists; otherwise - false</returns>
+        [Obsolete("Please use Unicorn.UI.Core.PageObject.ControlExtension.ExistsInPageObject instead")]
         public static bool Exists(this WebControl control)
         {
             IWebDriver driver = ((IWrapsDriver)control.Instance).WrappedDriver;
