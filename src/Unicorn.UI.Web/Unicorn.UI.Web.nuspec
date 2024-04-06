@@ -2,13 +2,13 @@
 <package >
   <metadata>
     <id>Unicorn.UI.Web</id>
-    <version>3.1.0</version>
+    <version>$version$</version>
     <title>Unicorn.UI.Web</title>
     <authors>Vitaliy Dobriyan</authors>
     <license type="expression">Apache-2.0</license>
-    <copyright>Copyright (c) Vitaliy Dobriyan 2022</copyright>
-    <projectUrl>https://bitbucket.org/dobriyanchik/unicorntaf</projectUrl>
-    <repository type="git" url="https://bitbucket.org/dobriyanchik/unicorntaf"/>
+    <copyright>Copyright (c) Vitaliy Dobriyan 2024</copyright>
+    <projectUrl>https://unicorn-taf.github.io</projectUrl>
+    <repository type="git" url="https://github.com/Unicorn-TAF/ui-web"/>
     <icon>images\icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
@@ -16,21 +16,21 @@
       Unicorn Web features: Ready for use implementations of common controls, extended page object features.
       This package includes implementations of web UI interaction based on WebDriver.
     </description>
-    <releaseNotes>Non-static WebDriver and screenshotter.</releaseNotes>
-    <tags>automation ui controls page-object web webdriver browser</tags>
+    <releaseNotes>Updated dependency on UI.Core</releaseNotes>
+    <tags>unicorn-taf automation ui controls page-object web webdriver browser</tags>
     <dependencies>
       <group targetFramework="net452">
-        <dependency id="Unicorn.UI.Core" version="3.0.0"/>
+        <dependency id="Unicorn.UI.Core" version="3.1.0"/>
         <dependency id="Selenium.Support" version="3.141.0"/>
         <dependency id="Selenium.WebDriver" version="3.141.0"/>
       </group>
       <group targetFramework="net5.0">
-        <dependency id="Unicorn.UI.Core" version="3.0.0"/>
+        <dependency id="Unicorn.UI.Core" version="3.1.0"/>
         <dependency id="Selenium.Support" version="3.141.0"/>
         <dependency id="Selenium.WebDriver" version="3.141.0"/>
       </group>
       <group targetFramework="netstandard2.0">
-        <dependency id="Unicorn.UI.Core" version="3.0.0"/>
+        <dependency id="Unicorn.UI.Core" version="3.1.0"/>
         <dependency id="Selenium.Support" version="3.141.0"/>
         <dependency id="Selenium.WebDriver" version="3.141.0"/>
       </group>
