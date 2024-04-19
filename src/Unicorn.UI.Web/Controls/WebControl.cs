@@ -158,7 +158,7 @@ namespace Unicorn.UI.Web.Controls
             Logger.Instance.Log(LogLevel.Debug, $"JavaScript click {this}");
 
             Selenium.IJavaScriptExecutor js = (Selenium.IJavaScriptExecutor)
-                ((Selenium.Internal.IWrapsDriver)Instance).WrappedDriver;
+                ((Selenium.IWrapsDriver)Instance).WrappedDriver;
 
             js.ExecuteScript("arguments[0].click()", Instance);
         }
@@ -169,7 +169,7 @@ namespace Unicorn.UI.Web.Controls
         public virtual void RightClick()
         {
             Logger.Instance.Log(LogLevel.Debug, $"Right click {this}");
-            var actions = new Actions(((Selenium.Internal.IWrapsDriver)Instance).WrappedDriver);
+            var actions = new Actions(((Selenium.IWrapsDriver)Instance).WrappedDriver);
             actions.MoveToElement(Instance);
             actions.ContextClick();
             actions.Release().Perform();

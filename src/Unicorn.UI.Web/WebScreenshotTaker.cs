@@ -15,7 +15,6 @@ namespace Unicorn.UI.Web
         private const int MaxLength = 250;
 
         private readonly string _screenshotsDir;
-        private readonly OpenQA.Selenium.ScreenshotImageFormat _format;
         private readonly WebDriver _driver;
 
         /// <summary>
@@ -43,8 +42,6 @@ namespace Unicorn.UI.Web
             {
                 Directory.CreateDirectory(screenshotsDir);
             }
-
-            _format = OpenQA.Selenium.ScreenshotImageFormat.Png;
         }
 
         /// <summary>
@@ -74,8 +71,8 @@ namespace Unicorn.UI.Web
                     filePath = filePath.Substring(0, MaxLength - 1) + "~";
                 }
 
-                filePath += "." + _format;
-                printScreen.SaveAsFile(filePath, _format);
+                filePath += ".png";
+                printScreen.SaveAsFile(filePath);
                 return filePath;
             }
             catch (Exception e)
@@ -127,7 +124,7 @@ namespace Unicorn.UI.Web
 
         private void TakeScreenshot(SuiteMethod suiteMethod)
         {
-            var mime = "image/" + _format.ToString().ToLowerInvariant();
+            var mime = "image/png";
             var screenshotPath = TakeScreenshot(suiteMethod.Outcome.FullMethodName);
 
             suiteMethod.Outcome.Attachments.Add(new Attachment("Screenshot", mime, screenshotPath));

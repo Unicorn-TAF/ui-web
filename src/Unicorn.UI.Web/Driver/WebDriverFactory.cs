@@ -4,7 +4,6 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Opera;
 
 namespace Unicorn.UI.Web.Driver
 {
@@ -20,8 +19,6 @@ namespace Unicorn.UI.Web.Driver
                     return new InternetExplorerDriver();
                 case BrowserType.Firefox:
                     return new FirefoxDriver();
-                case BrowserType.Opera:
-                    return new OperaDriver();
                 case BrowserType.Edge:
                     return new EdgeDriver();
                 default:
@@ -39,8 +36,6 @@ namespace Unicorn.UI.Web.Driver
                     return new InternetExplorerDriver((InternetExplorerOptions)options);
                 case BrowserType.Firefox:
                     return new FirefoxDriver((FirefoxOptions)options);
-                case BrowserType.Opera:
-                    return new OperaDriver((OperaOptions)options);
                 case BrowserType.Edge:
                     return new EdgeDriver((EdgeOptions)options);
                 default:
@@ -60,9 +55,6 @@ namespace Unicorn.UI.Web.Driver
 
                 case FirefoxDriver _:
                     return BrowserType.Firefox;
-
-                case OperaDriver _:
-                    return BrowserType.Opera;
 
                 case EdgeDriver _:
                     return BrowserType.Edge;
