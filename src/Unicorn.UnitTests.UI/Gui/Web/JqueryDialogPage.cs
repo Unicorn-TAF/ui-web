@@ -8,7 +8,7 @@ using Unicorn.UI.Web.PageObject.Attributes;
 
 namespace Unicorn.UnitTests.UI.Gui.Web
 {
-    [PageInfo("https://jqueryui.com/resources/demos/dialog/modal-confirmation.html")]
+    [PageInfo("dialog-modal-confirmation.html")]
     public class JqueryDialogPage : WebPage
     {
         public JqueryDialogPage(IWebDriver driver) : base(driver)

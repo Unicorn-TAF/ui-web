@@ -11,7 +11,7 @@ using Unicorn.UI.Web.PageObject.Attributes;
 
 namespace Unicorn.UnitTests.UI.Gui.Web
 {
-    [PageInfo("https://jqueryui.com/resources/demos/selectmenu/default.html", "jQuery UI Selectmenu - Default functionality")]
+    [PageInfo("select-menu.html", "jQuery UI Selectmenu - Default functionality")]
     public class JquerySelectPage : WebPage
     {
         [Find(Using.WebCss, "fieldset select")]

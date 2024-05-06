@@ -9,7 +9,7 @@ using Unicorn.UI.Web.PageObject.Attributes;
 
 namespace Unicorn.UnitTests.UI.Gui.Web
 {
-    [PageInfo("http://labs.creative-area.net/jquery.datagrid/demo/")]
+    [PageInfo("jquery-datagrid.html")]
     public class JqueryDataGridPage : WebPage
     {
         public JqueryDataGridPage(OpenQA.Selenium.IWebDriver driver) : base(driver)

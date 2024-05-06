@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using System;
+using System.IO;
+using System.Reflection;
 using Unicorn.UI.Web.PageObject;
 
 namespace Unicorn.UnitTests.UI
@@ -10,9 +12,12 @@ namespace Unicorn.UnitTests.UI
         {
             T page = (T)Activator.CreateInstance(typeof(T), new object[] { driver });
 
-            if (forceNavigation || driver.Url != page.Url)
+            string fullUrl = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName +
+                "\\TestPages\\" + page.Url;
+
+            if (forceNavigation || driver.Url != fullUrl)
             {
-                driver.Url = page.Url;
+                driver.Url = fullUrl;
             }
 
             return page;

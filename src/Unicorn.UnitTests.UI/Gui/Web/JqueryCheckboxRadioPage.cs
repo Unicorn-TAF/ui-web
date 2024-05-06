@@ -8,7 +8,7 @@ using Unicorn.UI.Web.PageObject.Attributes;
 
 namespace Unicorn.UnitTests.UI.Gui.Web
 {
-    [PageInfo("https://jqueryui.com/resources/demos/checkboxradio/default.html")]
+    [PageInfo("checkbox-radio.html")]
     public class JqueryCheckboxRadioPage : WebPage
     {
         internal const string RadioButtonName = "Radiobutton";
