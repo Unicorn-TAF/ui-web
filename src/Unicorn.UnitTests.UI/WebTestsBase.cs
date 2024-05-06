@@ -12,8 +12,10 @@ namespace Unicorn.UnitTests.UI
         {
             T page = (T)Activator.CreateInstance(typeof(T), new object[] { driver });
 
-            string fullUrl = Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName +
-                "\\TestPages\\" + page.Url;
+
+            string fullUrl = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                "TestPages",
+                page.Url);
 
             if (forceNavigation || driver.Url != fullUrl)
             {
