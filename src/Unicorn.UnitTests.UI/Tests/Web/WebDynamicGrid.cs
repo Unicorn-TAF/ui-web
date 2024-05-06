@@ -5,7 +5,7 @@ using Unicorn.UnitTests.UI.Gui.Web;
 namespace Unicorn.UnitTests.UI.Tests.Web
 {
     [TestFixture]
-    public class WebDynamicGrid
+    public class WebDynamicGrid : WebTestsBase
     {
         private static JqueryDataGridPage page;
         private static WebDriver webdriver;
@@ -14,9 +14,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         public static void Setup()
         {
             webdriver = DriverManager.GetDriverInstance();
-            page = new JqueryDataGridPage(webdriver.SeleniumDriver);
-            webdriver.Get(page.Url);
-            page.WaitForLoading();
+            page = NavigateToPage<JqueryDataGridPage>(webdriver.SeleniumDriver);
         }
 
         [OneTimeTearDown]

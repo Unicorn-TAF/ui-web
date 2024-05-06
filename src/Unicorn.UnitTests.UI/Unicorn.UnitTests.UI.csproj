@@ -25,4 +25,12 @@
     <Reference Include="System.Runtime" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestPages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(ProjectDir)TestPages\**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

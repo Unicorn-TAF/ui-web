@@ -17,9 +17,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         [Test(Description = "WebPage.Opened works for page with relative url only")]
         public void TestWebPageOpenedWorksForPageWithRelativeUrlOnly()
         {
-            JqueryDataGridPage page = new JqueryDataGridPage(webdriver.SeleniumDriver);
-            webdriver.Get(page.Url);
-            page.WaitForLoading();
+            JqueryDataGridPage page = NavigateToPage<JqueryDataGridPage>(webdriver.SeleniumDriver);
             Assert.IsTrue(page.Opened);
         }
 
