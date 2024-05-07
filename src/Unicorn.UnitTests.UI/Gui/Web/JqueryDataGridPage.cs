@@ -19,7 +19,7 @@ namespace Unicorn.UnitTests.UI.Gui.Web
         [ById("dg-demo-static-data")]
         [DefineGrid(GridElement.Header, Using.WebTag, "th")]
         [DefineGrid(GridElement.Row, Using.WebCss, "tbody > tr")]
-        [DefineGrid(GridElement.Cell, Using.WebCss, "tbody > tr > td")]
+        [DefineGrid(GridElement.Cell, Using.WebCss, "td")]
         public DynamicDataGrid DataGrid { get; set; }
 
         public void WaitForLoading() =>

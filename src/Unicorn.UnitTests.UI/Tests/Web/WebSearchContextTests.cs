@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 using Unicorn.UI.Core.Driver;
 using Unicorn.UI.Web.Controls;
 using Unicorn.UI.Web.Driver;
@@ -47,6 +48,16 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         {
             WebControl firstChild = webdriver.Find<WebControl>(ByLocator.Css(".hasDatepicker"));
             Assert.That(firstChild.GetAttribute("id"), Is.EqualTo("datepicker"));
+        }
+
+
+        [Test]
+        [Author("Vitaliy Dobriyan")]
+        public void TestSearchContextFindListByCss()
+        {
+            WebControl firstChild = webdriver.Find<WebControl>(ByLocator.Css(".hasDatepicker"));
+            IList<WebControl> controls = firstChild.FindList<WebControl>(ByLocator.Css(".ui-datepicker-calendar > thead th"));
+            Assert.That(controls.Count, Is.EqualTo(7));
         }
 
         [Test]
