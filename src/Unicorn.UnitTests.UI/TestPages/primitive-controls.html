@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Primitive html controls</title>
+		<style>
+		.margin { margin-right: 25px; }
+		table, th, td { border: 1px solid black; border-collapse: collapse; }
+		td { padding: 5px; }
+		fieldset { margin-bottom: 50px; }
+		legend { margin:0 auto; }
+		</style>
+	</head>
+	<body>
+		<div class="demo">
+			<form action="#">
+				<fieldset>
+					<legend>Dropdowns</legend>
+					
+					<label for="simple-dd">Simple</label>
+					<select class="margin" name="simple-dd" id="simple-dd">
+						<option>Slow</option>
+						<option selected="selected">Medium</option>
+						<option>Fast</option>
+					</select>
+					
+					<label for="groups-dd">With groups</label>
+					<select name="groups-dd" id="groups-dd">
+						<optgroup label="Group 1">
+							<option value="option1">option 1</option>
+							<option value="option2">option 2</option>
+						</optgroup>
+						<optgroup label="Group 2">
+							<option value="option3">option 3</option>
+							<option value="option4">option 4</option>
+						</optgroup>
+					</select>
+
+				</fieldset>
+				
+				<fieldset>
+					<legend>Radio group</legend>
+					<label for="radio-1">Radio 1</label>
+					<input class="margin" type="radio" name="radio-1" id="radio-1">
+					<label for="radio-2">Radio 2</label>
+					<input class="margin" type="radio" name="radio-1" id="radio-2">
+					<label for="radio-3">Radio 3</label>
+					<input type="radio" name="radio-1" id="radio-3">
+				</fieldset>
+				
+				<fieldset>
+					<legend>Checkboxes</legend>
+					<label for="checkbox-1">Checkbox 1</label>
+					<input class="margin" type="checkbox" name="checkbox-1" id="checkbox-1">
+					<label for="checkbox-2">Checkbox 2</label>
+					<input class="margin" type="checkbox" name="checkbox-2" id="checkbox-2">
+					<label for="checkbox-3">Checkbox 3</label>
+					<input class="margin" type="checkbox" name="checkbox-3" id="checkbox-3">
+					<label for="checkbox-4">Checkbox 4</label>
+					<input type="checkbox" name="checkbox-4" id="checkbox-4">
+				</fieldset>
+				
+				<fieldset>
+					<legend>Table</legend>
+					
+					<table class="table" id="table">
+						<thead>
+							<tr>
+								<th>Continent</th>
+								<th>Name</th>
+								<th>Population</th>
+								<th>Surface</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>North America</td>
+								<td>Aruba</td>
+								<td>103000</td>
+								<td>193.00</td>
+							</tr>
+							<tr>
+								<td>Asia</td>
+								<td>Afghanistan</td>
+								<td>22720000</td>
+								<td>652090.00</td>
+							</tr>
+							<tr>
+								<td>Africa</td>
+								<td>Angola</td>
+								<td>12878000</td>
+								<td>1246700.00</td>
+							</tr>
+							<tr>
+								<td>Europe</td>
+								<td>Albania</td>
+								<td>3401200</td>
+								<td>28748.00</td>
+							</tr>
+							<tr>
+								<td>South America</td>
+								<td>Argentina</td>
+								<td>37032000</td>
+								<td>2780400.00</td>
+							</tr>
+							<tr>
+								<td>Oceania</td>
+								<td>American Samoa</td>
+								<td>68000</td>
+								<td>199.00</td>
+							</tr>
+							<tr>
+								<td>Antarctica</td>
+								<td>Antarctica</td>
+								<td>0</td>
+								<td>13120000.00</td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>

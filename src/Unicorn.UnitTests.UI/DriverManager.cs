@@ -26,7 +26,10 @@ namespace Unicorn.UnitTests.UI
                 "disable-impl-side-painting",
                 "enable-gpu-rasterization",
                 "force-gpu-rasterization",
+#if DEBUG
+#else
                 "headless",
+#endif
                 "--window-size=1920x1080");
 
             return options;
