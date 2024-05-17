@@ -4,14 +4,14 @@ using System.IO;
 using System.Reflection;
 using Unicorn.UI.Web.PageObject;
 
-namespace Unicorn.UnitTests.UI
+namespace Unicorn.UnitTests.UI.Tests
 {
     public class WebTestsBase
     {
-        protected static T NavigateToPage<T>(IWebDriver driver, bool forceNavigation) where T : WebPage
+        protected static T NavigateToPage<T>(bool forceNavigation) where T : WebPage
         {
+            IWebDriver driver = DriverManager.Instance.SeleniumDriver;
             T page = (T)Activator.CreateInstance(typeof(T), new object[] { driver });
-
 
             string fullUrl = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "TestPages",
@@ -25,7 +25,10 @@ namespace Unicorn.UnitTests.UI
             return page;
         }
 
-        protected static T NavigateToPage<T>(IWebDriver driver) where T : WebPage =>
-            NavigateToPage<T>(driver, false);
+        protected static T NavigateToPage<T>() where T : WebPage =>
+            NavigateToPage<T>(false);
+
+        public void Refresh() => 
+            DriverManager.Instance.SeleniumDriver.Navigate().Refresh();
     }
 }

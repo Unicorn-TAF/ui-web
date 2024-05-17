@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Unicorn.UI.Web.Driver;
 using Unicorn.UnitTests.UI.Gui.Web;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
@@ -7,29 +6,19 @@ namespace Unicorn.UnitTests.UI.Tests.Web
     [TestFixture]
     public class WebPrimitiveControlsTests : WebTestsBase
     {
-        private static PrimitiveControlsPage page;
-        private static WebDriver webdriver;
+        private PrimitiveControlsPage page;
 
         [OneTimeSetUp]
-        public static void Setup()
+        public void Setup()
         {
-            webdriver = DriverManager.GetDriverInstance();
-            page = NavigateToPage<PrimitiveControlsPage>(webdriver.SeleniumDriver);
-        }
-
-        [OneTimeTearDown]
-        public static void TearDown()
-        {
-            webdriver.Close();
-            webdriver = null;
-            page = null;
+            page = NavigateToPage<PrimitiveControlsPage>();
         }
 
         [Author("Vitaliy Dobriyan")]
         [Test(Description = "Primitive Dropdown current selection")]
         public void TestPrimitiveDropdownCurrentValue()
         {
-            webdriver.SeleniumDriver.Navigate().Refresh();
+            Refresh();
             Assert.That(page.SimpleDropdown.SelectedValue, Is.EqualTo("Medium"));
         }
 
@@ -37,7 +26,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         [Test(Description = "Primitive Dropdown select already selected value")]
         public void TestPrimitiveDropdownSelectAlreadySelectedValue()
         {
-            webdriver.SeleniumDriver.Navigate().Refresh();
+            Refresh();
             Assert.IsFalse(page.SimpleDropdown.Select("Medium"));
         }
 
@@ -46,7 +35,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         public void TestPrimitiveDropdownSelectionByText()
         {
             string valueToSelect = "Fast";
-            webdriver.SeleniumDriver.Navigate().Refresh();
+            Refresh();
             page.SimpleDropdown.Select(valueToSelect);
             Assert.That(page.SimpleDropdown.SelectedValue, Is.EqualTo(valueToSelect));
         }

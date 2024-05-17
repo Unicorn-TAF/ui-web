@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Unicorn.UI.Web.Driver;
 using Unicorn.UnitTests.UI.Gui.Web;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
@@ -8,23 +7,11 @@ namespace Unicorn.UnitTests.UI.Tests.Web
     public class WebDynamicDialog : WebTestsBase
     {
         private JqueryDialogPage page;
-        private static WebDriver webdriver;
-
-        [OneTimeSetUp]
-        public static void Setup() =>
-            webdriver = DriverManager.GetDriverInstance();
-
-        [OneTimeTearDown]
-        public static void TearDown()
-        {
-            webdriver.Close();
-            webdriver = null;
-        }
 
         [SetUp]
         public void PreparePage()
         {
-            page = NavigateToPage<JqueryDialogPage>(webdriver.SeleniumDriver, true);
+            page = NavigateToPage<JqueryDialogPage>(true);
         }
 
         [Author("Vitaliy Dobriyan")]

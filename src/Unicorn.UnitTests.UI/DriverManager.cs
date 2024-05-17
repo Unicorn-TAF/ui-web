@@ -6,7 +6,9 @@ namespace Unicorn.UnitTests.UI
 {
     internal static class DriverManager
     {
-        internal static DesktopWebDriver GetDriverInstance()
+        public static DesktopWebDriver Instance { get; } = GetDriverInstance();
+
+        private static DesktopWebDriver GetDriverInstance()
         {
             IWebDriver driver = new ChromeDriver(GetChromeOptions());
 
