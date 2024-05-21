@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Unicorn.UI.Core" Version="3.1.0" />
+    <PackageReference Include="Unicorn.UI.Core" Version="3.3.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.19.0" />
   </ItemGroup>
 
