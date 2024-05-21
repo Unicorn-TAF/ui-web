@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using Unicorn.UI.Core.Controls;
 using Unicorn.UI.Core.Driver;
 using Unicorn.UI.Web.Controls;
 using Unicorn.UI.Web.Driver;
@@ -24,6 +25,24 @@ namespace Unicorn.UnitTests.UI.Tests.Web
             WebControl firstChild = WebDriver.FirstChild<WebControl>();
             Assert.That(firstChild.Instance.TagName, Is.EqualTo("html"));
         }
+
+        [Test]
+        [Author("Vitaliy Dobriyan")]
+        public void TestSearchContextFindIControl()
+        {
+            IControl firstChild = WebDriver.Find(ByLocator.Id("datepicker"));
+            Assert.That(firstChild.GetAttribute("class"), Is.EqualTo("hasDatepicker"));
+        }
+
+        [Test]
+        [Author("Vitaliy Dobriyan")]
+        public void TestSearchContextTryGetChildIControlPositive() =>
+            Assert.IsTrue(WebDriver.TryGetChild(ByLocator.Id("datepicker")));
+
+        [Test]
+        [Author("Vitaliy Dobriyan")]
+        public void TestSearchContextTryGetChildIControlNegative() =>
+            Assert.IsFalse(WebDriver.TryGetChild(ByLocator.Css(".sdfgkjhasdflkjhsdf")));
 
         [Test]
         [Author("Vitaliy Dobriyan")]
