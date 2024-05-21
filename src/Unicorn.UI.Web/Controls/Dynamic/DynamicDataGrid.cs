@@ -24,7 +24,7 @@ namespace Unicorn.UI.Web.Controls.Dynamic
         /// <exception cref="NotSpecifiedLocatorException">is thrown when sub-control was not defined</exception>
         /// </summary>
         public virtual bool HasRows => Locators.ContainsKey(GridElement.Row) ?
-            TryGetChild<WebControl>(Locators[GridElement.Row]) :
+            TryGetChild(Locators[GridElement.Row]) :
             throw new NotSpecifiedLocatorException($"{nameof(Row)} data grid sub-control locator was not specified.");
 
         /// <summary>
@@ -234,8 +234,8 @@ namespace Unicorn.UI.Web.Controls.Dynamic
             if (Locators.ContainsKey(GridElement.Loader))
             {
                 new LoaderHandler(
-                    () => TryGetChild<WebControl>(Locators[GridElement.Loader]),
-                    () => !TryGetChild<WebControl>(Locators[GridElement.Loader]))
+                    () => TryGetChild(Locators[GridElement.Loader]),
+                    () => !TryGetChild(Locators[GridElement.Loader]))
                 .WaitFor(timeout);
             }
 

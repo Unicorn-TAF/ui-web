@@ -18,7 +18,7 @@ namespace Unicorn.UI.Web.Controls.Typified
     ///   &lt;tbody&gt;
     ///     &lt;tr&gt;
     ///       &lt;td/&gt;&lt;td/&gt;&lt;td/&gt;
-    ///     &lt;tr&gt;
+    ///     &lt;/tr&gt;
     ///   &lt;/tbody&gt;
     /// &lt;/table&gt;
     /// </code>
@@ -37,7 +37,7 @@ namespace Unicorn.UI.Web.Controls.Typified
 
         private IList<DataGridRow> Rows => FindList<DataGridRow>(ByLocator.Css(RowCss));
 
-        private bool HasRows => TryGetChild<WebControl>(ByLocator.Css(RowCss));
+        private bool HasRows => TryGetChild(ByLocator.Css(RowCss));
 
         /// <summary>
         /// Gets table cell located at specified row and column (zero based).
@@ -110,7 +110,7 @@ namespace Unicorn.UI.Web.Controls.Typified
         /// <param name="columnName">column name</param>
         /// <returns>true - if column exists, otherwise not</returns>
         public bool HasColumn(string columnName) =>
-            TryGetChild<WebControl>(ByLocator.Xpath(string.Format(ColumnXpathTemplate, columnName)));
+            TryGetChild(ByLocator.Xpath(string.Format(ColumnXpathTemplate, columnName)));
 
         /// <summary>
         /// Checks immediately if row having specified value at specified column exists in table.

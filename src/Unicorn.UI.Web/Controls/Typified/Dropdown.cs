@@ -2,11 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unicorn.Taf.Core.Logging;
 using Unicorn.UI.Core.Controls;
 using Unicorn.UI.Core.Controls.Interfaces;
 using Unicorn.UI.Core.Controls.Interfaces.Typified;
-
-using ULog = Unicorn.Taf.Core.Logging;
 
 namespace Unicorn.UI.Web.Controls.Typified
 {
@@ -52,7 +51,7 @@ namespace Unicorn.UI.Web.Controls.Typified
                 throw new ArgumentNullException(nameof(itemName), "Item name must not be null");
             }
 
-            ULog.Logger.Instance.Log(ULog.LogLevel.Debug, $"Select '{itemName}' item from {this}");
+            ULog.Debug("Select '{0}' item from {1}", itemName, this);
 
             IWebElement optionToSelect = Options.FirstOrDefault(option => option.Text.Equals(itemName)) ?? 
                 throw new ControlNotFoundException($"Item '{itemName}' was not found in dropdown");
@@ -73,7 +72,7 @@ namespace Unicorn.UI.Web.Controls.Typified
                 throw new ArgumentNullException(nameof(itemValue), "Item value must not be null");
             }
 
-            ULog.Logger.Instance.Log(ULog.LogLevel.Debug, $"Select '{itemValue}' value from {this}");
+            ULog.Debug("Select '{0}' value from {1}", itemValue, this);
 
             IList<IWebElement> options = Instance.FindElements(By.CssSelector($"option[value = '{itemValue}']"));
 
@@ -96,13 +95,13 @@ namespace Unicorn.UI.Web.Controls.Typified
         {
             if (optionToSelect.Selected)
             {
-                ULog.Logger.Instance.Log(ULog.LogLevel.Trace, "No need to select (the item is selected by default)");
+                ULog.Trace("No need to select (the item is selected by default)");
                 return false;
             }
             else
             {
                 optionToSelect.Click();
-                ULog.Logger.Instance.Log(ULog.LogLevel.Trace, "Item was selected");
+                ULog.Trace("Item was selected");
                 return true;
             }
         }
