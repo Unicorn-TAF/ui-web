@@ -77,7 +77,7 @@ namespace Unicorn.UI.Web
             }
             catch (Exception e)
             {
-                ULog.Warn(LogPrefix + ": Failed to save browser print screen: {0}", e);
+                ULog.Warn(LogPrefix + ": Failed to save browser print screen: \n{0}", e);
                 return string.Empty;
             }
         }
@@ -117,7 +117,7 @@ namespace Unicorn.UI.Web
             }
             catch (Exception e)
             {
-                ULog.Warn(LogPrefix + ": Failed to get browser print screen: {0}", e);
+                ULog.Warn(LogPrefix + ": Failed to get browser print screen: \n{0}", e);
                 return null;
             }
         }

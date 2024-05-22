@@ -63,7 +63,7 @@ namespace Unicorn.UI.Web.Driver
         /// <returns>result of script execution as <see cref="object"/></returns>
         public object ExecuteJS(string script, params object[] parameters)
         {
-            ULog.Debug("Executing JS: {0}", script);
+            ULog.Debug("Executing JS: \n{0}", script);
             IJavaScriptExecutor js = SeleniumDriver as IJavaScriptExecutor;
             return js.ExecuteScript(script, parameters);
         }
