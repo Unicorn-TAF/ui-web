@@ -10,10 +10,28 @@
 		fieldset { margin-bottom: 50px; }
 		legend { margin:0 auto; }
 		</style>
+		<script>
+		function onButtonRightClick() {
+			var label = document.getElementById("button-state");
+			label.textContent = "right";
+		}
+		
+		function onButtonClick() {
+			var label = document.getElementById("button-state");
+			label.textContent = "left";
+		}
+		</script>
 	</head>
 	<body>
 		<div class="demo">
 			<form action="#">
+			<fieldset>
+					<legend>Buttons</legend>
+					<button id="button" oncontextmenu="onButtonRightClick(); return false;" onclick="onButtonClick();">button</button>
+					<span>Mouse button detected: </label>
+					<label id="button-state" for="button">none</label>
+				</fieldset>
+			
 				<fieldset>
 					<legend>Dropdowns</legend>
 					
