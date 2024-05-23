@@ -13,6 +13,7 @@ namespace Unicorn.UI.Web
     {
         private const string LogPrefix = nameof(WebScreenshotTaker);
         private const int MaxLength = 250;
+        private const string Extension = "png";
 
         private readonly string _screenshotsDir;
         private readonly WebDriver _driver;
@@ -71,7 +72,7 @@ namespace Unicorn.UI.Web
                     filePath = filePath.Substring(0, MaxLength - 1) + "~";
                 }
 
-                filePath += ".png";
+                filePath += "." + Extension;
                 printScreen.SaveAsFile(filePath);
                 return filePath;
             }
@@ -124,7 +125,7 @@ namespace Unicorn.UI.Web
 
         private void TakeScreenshot(SuiteMethod suiteMethod)
         {
-            var mime = "image/png";
+            var mime = "image/" + Extension;
             var screenshotPath = TakeScreenshot(suiteMethod.Outcome.FullMethodName);
 
             suiteMethod.Outcome.Attachments.Add(new Attachment("Screenshot", mime, screenshotPath));
