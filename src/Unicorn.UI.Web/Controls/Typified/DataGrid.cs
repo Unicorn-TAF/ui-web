@@ -101,7 +101,7 @@ namespace Unicorn.UI.Web.Controls.Typified
                     $"Row where column with index '{columnIndex}' = '{cellValue}' does not exist.");
 
         [Obsolete]
-        public bool HasCell(string searchColumnName, string searchCellValue, string targetColumnName) =>
+        bool IDataGrid.HasCell(string searchColumnName, string searchCellValue, string targetColumnName) =>
             throw new NotImplementedException("Need to remove, it's useless");
 
         /// <summary>
@@ -155,16 +155,32 @@ namespace Unicorn.UI.Web.Controls.Typified
         }
     }
 
+    /// <summary>
+    /// The class describes primitive data grid row which is a <see cref="WebControl"/> and 
+    /// provides with ability to get inner cells by index.
+    /// </summary>
     public class DataGridRow : WebControl, IDataGridRow
     {
+        /// <summary>
+        /// Gets a cell inside the row by it's index.
+        /// </summary>
+        /// <param name="index">cell index (zero based)</param>
+        /// <returns><see cref="DataGridCell"/> object as <see cref="IDataGridCell"/></returns>
+        /// <exception cref="ControlNotFoundException">if there is no cell by provided index</exception>
         public IDataGridCell GetCell(int index) => 
             TryGetChild(ByLocator.Css($"td:nth-of-type({index + 1})"), 0, out DataGridCell cell) ?
             cell :
             throw new ControlNotFoundException($"Cell with index '{index}' does not exist.");
     }
 
+    /// <summary>
+    /// The class describes primitive data grid cell which is a <see cref="WebControl"/> and have some text data inside.
+    /// </summary>
     public class DataGridCell : WebControl, IDataGridCell
     {
+        /// <summary>
+        /// Gets cell text data which is cell <c>innerText</c>
+        /// </summary>
         public string Data => GetAttribute("innerText").Trim();
     }
 }

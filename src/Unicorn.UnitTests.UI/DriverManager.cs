@@ -21,13 +21,8 @@ namespace Unicorn.UnitTests.UI
             options.AddArguments(
                 "allow-insecure-localhost",
                 "ignore-certificate-errors",
-                "ignore-ssl-errors=yes",
                 "disable-extensions",
                 "disable-infobars",
-                "no-sandbox",
-                "disable-impl-side-painting",
-                "enable-gpu-rasterization",
-                "force-gpu-rasterization",
 #if DEBUG
 #else
                 "headless",

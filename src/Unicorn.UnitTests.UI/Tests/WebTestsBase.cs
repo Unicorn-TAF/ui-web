@@ -11,7 +11,7 @@ namespace Unicorn.UnitTests.UI.Tests
         protected static T NavigateToPage<T>(bool forceNavigation) where T : WebPage
         {
             IWebDriver driver = DriverManager.Instance.SeleniumDriver;
-            T page = (T)Activator.CreateInstance(typeof(T), new object[] { driver });
+            T page = (T)Activator.CreateInstance(typeof(T), new object[] { DriverManager.Instance });
 
             string fullUrl = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "TestPages",

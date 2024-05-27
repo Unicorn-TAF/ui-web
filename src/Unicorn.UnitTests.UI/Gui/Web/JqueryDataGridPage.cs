@@ -4,6 +4,7 @@ using Unicorn.UI.Core.PageObject.By;
 using Unicorn.UI.Core.Synchronization;
 using Unicorn.UI.Core.Synchronization.Conditions;
 using Unicorn.UI.Web.Controls.Dynamic;
+using Unicorn.UI.Web.Driver;
 using Unicorn.UI.Web.PageObject;
 using Unicorn.UI.Web.PageObject.Attributes;
 
@@ -12,7 +13,7 @@ namespace Unicorn.UnitTests.UI.Gui.Web
     [PageInfo("jquery-datagrid.html")]
     public class JqueryDataGridPage : WebPage
     {
-        public JqueryDataGridPage(OpenQA.Selenium.IWebDriver driver) : base(driver)
+        public JqueryDataGridPage(WebDriver driver) : base(driver)
         {
         }
 

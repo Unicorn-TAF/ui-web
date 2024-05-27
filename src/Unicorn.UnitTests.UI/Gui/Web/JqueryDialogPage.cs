@@ -1,8 +1,8 @@
-﻿using OpenQA.Selenium;
-using Unicorn.UI.Core.Controls.Dynamic;
+﻿using Unicorn.UI.Core.Controls.Dynamic;
 using Unicorn.UI.Core.Driver;
 using Unicorn.UI.Core.PageObject;
 using Unicorn.UI.Web.Controls.Dynamic;
+using Unicorn.UI.Web.Driver;
 using Unicorn.UI.Web.PageObject;
 using Unicorn.UI.Web.PageObject.Attributes;
 
@@ -11,7 +11,7 @@ namespace Unicorn.UnitTests.UI.Gui.Web
     [PageInfo("dialog-modal-confirmation.html")]
     public class JqueryDialogPage : WebPage
     {
-        public JqueryDialogPage(IWebDriver driver) : base(driver)
+        public JqueryDialogPage(WebDriver driver) : base(driver)
         {
         }
 

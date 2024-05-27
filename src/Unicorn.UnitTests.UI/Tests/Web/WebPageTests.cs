@@ -27,7 +27,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         public void TestWebPageOpenedFailsIfPageIsNotOpened()
         {
             NavigateToPage<JquerySelectPage>();
-            Assert.IsFalse(new JqueryDialogPage(DriverManager.Instance.SeleniumDriver).Opened);
+            Assert.IsFalse(new JqueryDialogPage(DriverManager.Instance).Opened);
         }
     }
 }
