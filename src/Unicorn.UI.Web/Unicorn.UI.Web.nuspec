@@ -16,30 +16,21 @@
       Unicorn Web features: Ready for use implementations of common controls, extended page object features.
       This package includes implementations of web UI interaction based on WebDriver.
     </description>
-    <releaseNotes>Updated dependency on UI.Core</releaseNotes>
+    <releaseNotes>Support of selenium 4.x, Updated dependency on UI.Core, primitive DataGrid implementation</releaseNotes>
     <tags>unicorn-taf automation ui controls page-object web webdriver browser</tags>
     <dependencies>
-      <group targetFramework="net452">
-        <dependency id="Unicorn.UI.Core" version="3.1.0"/>
-        <dependency id="Selenium.Support" version="3.141.0"/>
-        <dependency id="Selenium.WebDriver" version="3.141.0"/>
-      </group>
       <group targetFramework="net5.0">
-        <dependency id="Unicorn.UI.Core" version="3.1.0"/>
-        <dependency id="Selenium.Support" version="3.141.0"/>
-        <dependency id="Selenium.WebDriver" version="3.141.0"/>
+        <dependency id="Unicorn.UI.Core" version="3.3.0"/>
+        <dependency id="Selenium.WebDriver" version="4.10.0"/>
       </group>
       <group targetFramework="netstandard2.0">
-        <dependency id="Unicorn.UI.Core" version="3.1.0"/>
-        <dependency id="Selenium.Support" version="3.141.0"/>
-        <dependency id="Selenium.WebDriver" version="3.141.0"/>
+        <dependency id="Unicorn.UI.Core" version="3.3.0"/>
+        <dependency id="Selenium.WebDriver" version="4.10.0"/>
       </group>
     </dependencies>
   </metadata>
   <files>
     <file src="..\..\icon.png" target="images\" />
-    <file src="bin\Release\net452\unicorn.ui.web.dll" target="lib\net452" />
-    <file src="bin\Release\net452\unicorn.ui.web.xml" target="lib\net452" />
     <file src="bin\Release\netstandard2.0\unicorn.ui.web.dll" target="lib\netstandard2.0" />
     <file src="bin\Release\netstandard2.0\unicorn.ui.web.xml" target="lib\netstandard2.0" />
     <file src="bin\Release\net5.0\unicorn.ui.web.dll" target="lib\net5.0" />

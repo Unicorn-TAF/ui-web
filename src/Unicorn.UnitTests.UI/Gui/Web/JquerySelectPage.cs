@@ -1,11 +1,11 @@
-﻿using OpenQA.Selenium;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unicorn.UI.Core.Controls.Dynamic;
 using Unicorn.UI.Core.Driver;
 using Unicorn.UI.Core.PageObject;
 using Unicorn.UI.Core.PageObject.By;
 using Unicorn.UI.Web.Controls.Dynamic;
 using Unicorn.UI.Web.Controls.Typified;
+using Unicorn.UI.Web.Driver;
 using Unicorn.UI.Web.PageObject;
 using Unicorn.UI.Web.PageObject.Attributes;
 
@@ -15,9 +15,9 @@ namespace Unicorn.UnitTests.UI.Gui.Web
     public class JquerySelectPage : WebPage
     {
         [Find(Using.WebCss, "fieldset select")]
-        private IList<Dropdown> dropdownsList;
+        private readonly IList<Dropdown> _dropdownsList;
 
-        public JquerySelectPage(IWebDriver driver) : base(driver)
+        public JquerySelectPage(WebDriver driver) : base(driver)
         {
         }
 
@@ -37,6 +37,6 @@ namespace Unicorn.UnitTests.UI.Gui.Web
         [Find(Using.WebCss, "fieldset select")]
         public IList<Dropdown> DropdownsList { get; set; }
 
-        public IList<Dropdown> DropdownsListwithBackingField => dropdownsList;
+        public IList<Dropdown> DropdownsListwithBackingField => _dropdownsList;
     }
 }

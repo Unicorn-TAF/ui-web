@@ -5,8 +5,8 @@ using Unicorn.Taf.Core.Utility.Synchronization;
 using Unicorn.UI.Core.Controls;
 using Unicorn.UI.Core.Controls.Dynamic;
 using Unicorn.UI.Core.Driver;
+using Unicorn.UI.Core.PageObject;
 using Unicorn.UI.Core.Synchronization;
-using Unicorn.UI.Web.PageObject;
 
 namespace Unicorn.UI.Web.Controls.Dynamic
 {
@@ -139,8 +139,8 @@ namespace Unicorn.UI.Web.Controls.Dynamic
             if (Locators.ContainsKey(DialogElement.Loader))
             {
                 new LoaderHandler(
-                    () => TryGetChild<WebControl>(Locators[DialogElement.Loader]),
-                    () => !TryGetChild<WebControl>(Locators[DialogElement.Loader]))
+                    () => TryGetChild(Locators[DialogElement.Loader]),
+                    () => !TryGetChild(Locators[DialogElement.Loader]))
                 .WaitFor(timeout);
             }
 
@@ -153,7 +153,7 @@ namespace Unicorn.UI.Web.Controls.Dynamic
         /// <exception cref="TimeoutException">Thrown when window has not appeared</exception>
         public virtual void WaitForWindowIsDisplayed()
         {
-            Logger.Instance.Log(LogLevel.Trace, "Waiting for window appearance.");
+            ULog.Trace("Waiting for window appearance.");
 
             new DefaultWait
             {
@@ -170,7 +170,7 @@ namespace Unicorn.UI.Web.Controls.Dynamic
         /// <exception cref="TimeoutException">Thrown when window has not disappeared</exception>
         protected virtual void WaitForWindowIsNotDisplayed()
         {
-            Logger.Instance.Log(LogLevel.Trace, "Waiting for window disappearance.");
+            ULog.Trace("Waiting for window disappearance.");
 
             var wait = new DefaultWait
             {
@@ -183,9 +183,9 @@ namespace Unicorn.UI.Web.Controls.Dynamic
         }
 
         private bool IsWindowDisplayed() =>
-            (Cached || this.Exists()) && !GetAttribute("style").Contains("display: none;") && Visible;
+            (Cached || this.ExistsInPageObject()) && !GetAttribute("style").Contains("display: none;") && Visible;
 
         private bool IsWindowNotDisplayed() =>
-            !(Cached || this.Exists()) || (!GetAttribute("style").Contains("display: block;") && !Visible);
+            !(Cached || this.ExistsInPageObject()) || (!GetAttribute("style").Contains("display: block;") && !Visible);
     }
 }

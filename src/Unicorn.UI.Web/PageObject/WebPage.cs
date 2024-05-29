@@ -2,6 +2,7 @@
 using Unicorn.UI.Core.Driver;
 using Unicorn.UI.Core.PageObject;
 using Unicorn.UI.Web.Controls;
+using Unicorn.UI.Web.Driver;
 using Unicorn.UI.Web.PageObject.Attributes;
 using Selenium = OpenQA.Selenium;
 
@@ -15,12 +16,12 @@ namespace Unicorn.UI.Web.PageObject
         /// <summary>
         /// Initializes a new instance of the <see cref="WebPage"/> class with specified root search context, page sub-url and title.
         /// </summary>
-        /// <param name="searchContext">root search context (usually <see cref="Selenium.IWebDriver"/> instance)</param>
+        /// <param name="driver">root search context (<see cref="WebDriver"/> instance)</param>
         /// <param name="url">page sub-url</param>
         /// <param name="title">page title</param>
-        protected WebPage(Selenium.IWebDriver searchContext, string url, string title)
+        protected WebPage(WebDriver driver, string url, string title)
         {
-            SearchContext = searchContext;
+            SearchContext = driver.SeleniumDriver;
             ContainerFactory.InitContainer(this);
             Url = url;
             Title = title;
@@ -29,10 +30,10 @@ namespace Unicorn.UI.Web.PageObject
         /// <summary>
         /// Initializes a new instance of the <see cref="WebPage"/> class with specified root search context.
         /// </summary>
-        /// <param name="searchContext">root search context (usually <see cref="Selenium.IWebDriver"/> instance)</param>
-        protected WebPage(Selenium.IWebDriver searchContext)
+        /// <param name="driver">root search context (<see cref="WebDriver"/> instance)</param>
+        protected WebPage(WebDriver driver)
         {
-            SearchContext = searchContext;
+            SearchContext = driver.SeleniumDriver;
             ContainerFactory.InitContainer(this);
             PageInfoAttribute relativeUrlAttribute = GetType().GetCustomAttribute<PageInfoAttribute>(true);
             Url = relativeUrlAttribute?.RelativeUrl;

@@ -1,8 +1,8 @@
-﻿using OpenQA.Selenium;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unicorn.UI.Core.PageObject;
 using Unicorn.UI.Core.PageObject.By;
 using Unicorn.UI.Web.Controls.Typified;
+using Unicorn.UI.Web.Driver;
 using Unicorn.UI.Web.PageObject;
 using Unicorn.UI.Web.PageObject.Attributes;
 
@@ -13,7 +13,7 @@ namespace Unicorn.UnitTests.UI.Gui.Web
     {
         internal const string RadioButtonName = "Radiobutton";
 
-        public JqueryCheckboxRadioPage(IWebDriver driver) : base(driver)
+        public JqueryCheckboxRadioPage(WebDriver driver) : base(driver)
         {
         }
 

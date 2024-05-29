@@ -6,7 +6,9 @@ namespace Unicorn.UnitTests.UI
 {
     internal static class DriverManager
     {
-        internal static DesktopWebDriver GetDriverInstance()
+        public static DesktopWebDriver Instance { get; } = GetDriverInstance();
+
+        private static DesktopWebDriver GetDriverInstance()
         {
             IWebDriver driver = new ChromeDriver(GetChromeOptions());
 
@@ -19,14 +21,12 @@ namespace Unicorn.UnitTests.UI
             options.AddArguments(
                 "allow-insecure-localhost",
                 "ignore-certificate-errors",
-                "ignore-ssl-errors=yes",
                 "disable-extensions",
                 "disable-infobars",
-                "no-sandbox",
-                "disable-impl-side-painting",
-                "enable-gpu-rasterization",
-                "force-gpu-rasterization",
+#if DEBUG
+#else
                 "headless",
+#endif
                 "--window-size=1920x1080");
 
             return options;

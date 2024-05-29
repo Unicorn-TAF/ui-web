@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Unicorn.UI.Web.Driver;
 
@@ -54,7 +53,7 @@ namespace Unicorn.UI.Web.PageObject
 
         /// <summary>
         /// Gets specified site page instance from pages cache 
-        /// (page should have constructor with <see cref="IWebDriver"/> argument).
+        /// (page should have constructor with <see cref="WebDriver"/> argument).
         /// </summary>
         /// <typeparam name="T">page type</typeparam>
         /// <returns>page instance</returns>
@@ -64,7 +63,7 @@ namespace Unicorn.UI.Web.PageObject
 
             if (!_pagesCache.ContainsKey(type))
             {
-                T page = (T)Activator.CreateInstance(type, Driver.SeleniumDriver);
+                T page = (T)Activator.CreateInstance(type, Driver);
                 _pagesCache.Add(type, page);
             }
 

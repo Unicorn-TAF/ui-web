@@ -4,7 +4,7 @@ using Unicorn.UI.Core.Controls.Interfaces;
 namespace Unicorn.UI.Web.Controls.Typified
 {
     /// <summary>
-    /// Describes base radio button control.
+    /// Describes base radio button control described by <code>&lt;input type="radio"/&gt;</code>
     /// </summary>
     public class Radio : WebControl, ISelectable
     {
@@ -19,17 +19,17 @@ namespace Unicorn.UI.Web.Controls.Typified
         /// <returns>true - if selection was made; false - if radio is already selected</returns>
         public virtual bool Select()
         {
-            Logger.Instance.Log(LogLevel.Debug, $"Select {this}");
+            ULog.Debug("Select {0}", this);
 
             if (Selected)
             {
-                Logger.Instance.Log(LogLevel.Trace, "No need to select (selected by default)");
+                ULog.Trace("No need to select (selected by default)");
                 return false;
             }
 
             Instance.Click();
 
-            Logger.Instance.Log(LogLevel.Trace, "Selected");
+            ULog.Trace("Selected");
 
             return true;
         }

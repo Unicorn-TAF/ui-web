@@ -13,9 +13,9 @@ namespace Unicorn.UI.Web
     {
         private const string LogPrefix = nameof(WebScreenshotTaker);
         private const int MaxLength = 250;
+        private const string Extension = "png";
 
         private readonly string _screenshotsDir;
-        private readonly OpenQA.Selenium.ScreenshotImageFormat _format;
         private readonly WebDriver _driver;
 
         /// <summary>
@@ -43,8 +43,6 @@ namespace Unicorn.UI.Web
             {
                 Directory.CreateDirectory(screenshotsDir);
             }
-
-            _format = OpenQA.Selenium.ScreenshotImageFormat.Png;
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace Unicorn.UI.Web
 
             try
             {
-                Logger.Instance.Log(LogLevel.Debug, $"{LogPrefix}: Saving browser print screen...");
+                ULog.Debug(LogPrefix + ": Saving browser print screen...");
 
                 string filePath = Path.Combine(folder, fileName);
 
@@ -74,13 +72,13 @@ namespace Unicorn.UI.Web
                     filePath = filePath.Substring(0, MaxLength - 1) + "~";
                 }
 
-                filePath += "." + _format;
-                printScreen.SaveAsFile(filePath, _format);
+                filePath += "." + Extension;
+                printScreen.SaveAsFile(filePath);
                 return filePath;
             }
             catch (Exception e)
             {
-                Logger.Instance.Log(LogLevel.Warning, $"{LogPrefix}: Failed to save browser print screen: {e}");
+                ULog.Warn(LogPrefix + ": Failed to save browser print screen: \n{0}", e);
                 return string.Empty;
             }
         }
@@ -114,20 +112,20 @@ namespace Unicorn.UI.Web
         {
             try
             {
-                Logger.Instance.Log(LogLevel.Debug, $"{LogPrefix}: Creating browser print screen...");
+                ULog.Debug(LogPrefix + ": Creating browser print screen...");
 
                 return (_driver.SeleniumDriver as OpenQA.Selenium.ITakesScreenshot).GetScreenshot();
             }
             catch (Exception e)
             {
-                Logger.Instance.Log(LogLevel.Warning, $"{LogPrefix}: Failed to get browser print screen: {e}");
+                ULog.Warn(LogPrefix + ": Failed to get browser print screen: \n{0}", e);
                 return null;
             }
         }
 
         private void TakeScreenshot(SuiteMethod suiteMethod)
         {
-            var mime = "image/" + _format.ToString().ToLowerInvariant();
+            var mime = "image/" + Extension;
             var screenshotPath = TakeScreenshot(suiteMethod.Outcome.FullMethodName);
 
             suiteMethod.Outcome.Attachments.Add(new Attachment("Screenshot", mime, screenshotPath));

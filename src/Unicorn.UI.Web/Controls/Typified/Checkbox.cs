@@ -4,7 +4,7 @@ using Unicorn.UI.Core.Controls.Interfaces.Typified;
 namespace Unicorn.UI.Web.Controls.Typified
 {
     /// <summary>
-    /// Describes base checkbox control.
+    /// Describes base checkbox control described by <code>&lt;input type="checkbox"/&gt;</code>
     /// </summary>
     public class Checkbox : WebControl, ICheckbox
     {
@@ -17,39 +17,47 @@ namespace Unicorn.UI.Web.Controls.Typified
         /// Sets checkbox checked state
         /// </summary>
         /// <param name="isChecked">true - to check; false - to uncheck</param>
-        /// <returns>true - is state was changed; false - if already in specified state</returns>
+        /// <returns>true - if state was changed; false - if already in specified state</returns>
         public virtual bool SetCheckedState(bool isChecked) =>
             isChecked ? Check() : Uncheck();
 
-        private bool Check()
+        /// <summary>
+        /// Checks the checkbox.
+        /// </summary>
+        /// <returns>true - if checkbox has been checked; false - if it was already in checked state</returns>
+        public bool Check()
         {
-            Logger.Instance.Log(LogLevel.Debug, $"Check {this}");
+            ULog.Debug("Check {0}", this);
 
             if (Checked)
             {
-                Logger.Instance.Log(LogLevel.Trace, "No need to check (checked by default)");
+                ULog.Trace("No need to check (checked by default)");
                 return false;
             }
 
             Click();
 
-            Logger.Instance.Log(LogLevel.Trace, "Checked");
+            ULog.Trace("Checked");
 
             return true;
         }
 
-        private bool Uncheck()
+        /// <summary>
+        /// Unchecks the checkbox.
+        /// </summary>
+        /// <returns>true - if checkbox has been unchecked; false - if it was already in unchecked state</returns>
+        public bool Uncheck()
         {
-            Logger.Instance.Log(LogLevel.Debug, $"Uncheck {this}");
+            ULog.Debug("Uncheck {0}", this);
 
             if (!Checked)
             {
-                Logger.Instance.Log(LogLevel.Trace, "No need to uncheck (unchecked by default)");
+                ULog.Trace("No need to uncheck (unchecked by default)");
                 return false;
             }
 
             Click();
-            Logger.Instance.Log(LogLevel.Trace, "Unchecked");
+            ULog.Trace("Unchecked");
 
             return true;
         }

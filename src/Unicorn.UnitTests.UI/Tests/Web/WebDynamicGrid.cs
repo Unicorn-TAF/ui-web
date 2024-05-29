@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Unicorn.UI.Web.Driver;
 using Unicorn.UnitTests.UI.Gui.Web;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
@@ -7,22 +6,12 @@ namespace Unicorn.UnitTests.UI.Tests.Web
     [TestFixture]
     public class WebDynamicGrid : WebTestsBase
     {
-        private static JqueryDataGridPage page;
-        private static WebDriver webdriver;
+        private JqueryDataGridPage page;
 
         [OneTimeSetUp]
-        public static void Setup()
+        public void Setup()
         {
-            webdriver = DriverManager.GetDriverInstance();
-            page = NavigateToPage<JqueryDataGridPage>(webdriver.SeleniumDriver);
-        }
-
-        [OneTimeTearDown]
-        public static void TearDown()
-        {
-            webdriver.Close();
-            webdriver = null;
-            page = null;
+            page = NavigateToPage<JqueryDataGridPage>();
         }
 
         [Author("Vitaliy Dobriyan")]

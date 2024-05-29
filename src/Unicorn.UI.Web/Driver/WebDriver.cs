@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using Unicorn.Taf.Core.Logging;
 using Unicorn.UI.Core.Driver;
 using Unicorn.UI.Web.Controls;
-using ULogLevel = Unicorn.Taf.Core.Logging.LogLevel;
 
 namespace Unicorn.UI.Web.Driver
 {
@@ -42,7 +41,7 @@ namespace Unicorn.UI.Web.Driver
         /// </summary>
         public void Close()
         {
-            Logger.Instance.Log(ULogLevel.Debug, "Close driver");
+            ULog.Debug("Close driver");
             SeleniumDriver.Quit();
         }
 
@@ -52,7 +51,7 @@ namespace Unicorn.UI.Web.Driver
         /// <param name="url">url to navigate</param>
         public void Get(string url)
         {
-            Logger.Instance.Log(ULogLevel.Debug, $"Navigate to {url}");
+            ULog.Debug("Navigate to {0}", url);
             SeleniumDriver.Navigate().GoToUrl(url);
         }
 
@@ -64,7 +63,7 @@ namespace Unicorn.UI.Web.Driver
         /// <returns>result of script execution as <see cref="object"/></returns>
         public object ExecuteJS(string script, params object[] parameters)
         {
-            Logger.Instance.Log(ULogLevel.Debug, $"Executing JS: {script}");
+            ULog.Debug("Executing JS: \n{0}", script);
             IJavaScriptExecutor js = SeleniumDriver as IJavaScriptExecutor;
             return js.ExecuteScript(script, parameters);
         }
@@ -75,7 +74,7 @@ namespace Unicorn.UI.Web.Driver
         /// <param name="control">control instance</param>
         public void ScrollTo(WebControl control)
         {
-            Logger.Instance.Log(ULogLevel.Debug, $"Scroll to {control}");
+            ULog.Debug("Scroll to {0}", control);
 
             IJavaScriptExecutor js = SeleniumDriver as IJavaScriptExecutor;
             js.ExecuteScript(

@@ -90,7 +90,7 @@ namespace Unicorn.UI.Web.Driver
         {
             IWebDriver driver = SearchContext is IWebDriver ?
                 (IWebDriver)SearchContext :
-                ((OpenQA.Selenium.Internal.IWrapsDriver)SearchContext).WrappedDriver;
+                ((IWrapsDriver)SearchContext).WrappedDriver;
 
             driver.Manage().Timeouts().ImplicitWait = timeout;
         }

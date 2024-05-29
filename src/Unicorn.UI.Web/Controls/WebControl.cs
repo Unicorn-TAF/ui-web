@@ -119,7 +119,7 @@ namespace Unicorn.UI.Web.Controls
                     } 
                     catch (Selenium.StaleElementReferenceException)
                     {
-                        Logger.Instance.Log(LogLevel.Warning, "Got StaleElementReferenceException, retrying control search...");
+                        ULog.Warn("Got StaleElementReferenceException, retrying control search...");
                         base.SearchContext = GetNativeControlFromParentContext(Locator);
                     }
                 }
@@ -146,7 +146,7 @@ namespace Unicorn.UI.Web.Controls
         /// </summary>
         public virtual void Click()
         {
-            Logger.Instance.Log(LogLevel.Debug, $"Click {this}");
+            ULog.Debug("Click {0}", this);
             Instance.Click();
         }
 
@@ -155,10 +155,10 @@ namespace Unicorn.UI.Web.Controls
         /// </summary>
         public virtual void JsClick()
         {
-            Logger.Instance.Log(LogLevel.Debug, $"JavaScript click {this}");
+            ULog.Debug("JavaScript click {0}", this);
 
             Selenium.IJavaScriptExecutor js = (Selenium.IJavaScriptExecutor)
-                ((Selenium.Internal.IWrapsDriver)Instance).WrappedDriver;
+                ((Selenium.IWrapsDriver)Instance).WrappedDriver;
 
             js.ExecuteScript("arguments[0].click()", Instance);
         }
@@ -168,8 +168,8 @@ namespace Unicorn.UI.Web.Controls
         /// </summary>
         public virtual void RightClick()
         {
-            Logger.Instance.Log(LogLevel.Debug, $"Right click {this}");
-            var actions = new Actions(((Selenium.Internal.IWrapsDriver)Instance).WrappedDriver);
+            ULog.Debug("Right click {0}", this);
+            var actions = new Actions(((Selenium.IWrapsDriver)Instance).WrappedDriver);
             actions.MoveToElement(Instance);
             actions.ContextClick();
             actions.Release().Perform();
