@@ -13,6 +13,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="125.0.6422.14100" />
   </ItemGroup>
 
   <ItemGroup>
