@@ -1,14 +1,16 @@
-﻿using NUnit.Framework;
+﻿using Unicorn.Taf.Core.Testing.Attributes;
+using Unicorn.Taf.Core.Verification;
+using Unicorn.Taf.Core.Verification.Matchers;
 using Unicorn.UnitTests.UI.Gui.Web;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
 {
-    [TestFixture]
+    [Suite]
     public class WebControlTests : WebTestsBase
     {
         private PrimitiveControlsPage page;
 
-        [OneTimeSetUp]
+        [BeforeSuite]
         public void Setup() =>
             page = NavigateToPage<PrimitiveControlsPage>(true);
 

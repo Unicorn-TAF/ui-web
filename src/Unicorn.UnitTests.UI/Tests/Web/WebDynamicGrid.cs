@@ -1,86 +1,88 @@
-﻿using NUnit.Framework;
+﻿using Unicorn.Taf.Core.Testing.Attributes;
+using Unicorn.Taf.Core.Verification;
+using Unicorn.Taf.Core.Verification.Matchers;
 using Unicorn.UnitTests.UI.Gui.Web;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
 {
-    [TestFixture]
+    [Suite]
     public class WebDynamicGrid : WebTestsBase
     {
         private JqueryDataGridPage page;
 
-        [OneTimeSetUp]
+        [BeforeSuite]
         public void Setup()
         {
             page = NavigateToPage<JqueryDataGridPage>();
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Get header by name")]
+        [Test("Get header by name")]
         public void TestGetHeaderByName() =>
-            Assert.AreEqual("Continent", page.DataGrid.GetColumnHeader("Continent").Text);
+            Assert.That(page.DataGrid.GetColumnHeader("Continent").Text, Is.EqualTo("Continent"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Get rows count")]
+        [Test("Get rows count")]
         public void TestGetRowsCount() =>
-            Assert.AreEqual(20, page.DataGrid.RowsCount);
+            Assert.That(page.DataGrid.RowsCount, Is.EqualTo(20));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Get specific row")]
+        [Test("Get specific row")]
         public void TestGetSpecificRow() =>
-            Assert.AreEqual("South America", page.DataGrid.GetRow("Name", "Argentina").GetCell(0).Data);
+            Assert.That(page.DataGrid.GetRow("Name", "Argentina").GetCell(0).Data, Is.EqualTo("South America"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Get row by index")]
+        [Test("Get row by index")]
         public void TestGetRowByIndex() =>
-            Assert.AreEqual("Angola", page.DataGrid.GetRow(2).GetCell(1).Data);
+            Assert.That(page.DataGrid.GetRow(2).GetCell(1).Data, Is.EqualTo("Angola"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Get specific cell")]
+        [Test("Get specific cell")]
         public void TestGetSpecificCell() =>
-            Assert.AreEqual("78000", page.DataGrid.GetCell("Name", "Andorra", "Population").Data);
+            Assert.That(page.DataGrid.GetCell("Name", "Andorra", "Population").Data, Is.EqualTo("78000"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Get cell by indexes")]
+        [Test("Get cell by indexes")]
         public void TestGetCellByIndexes() =>
-            Assert.AreEqual("83600.00", page.DataGrid.GetCell(7, 3).Data);
+            Assert.That(page.DataGrid.GetCell(7, 3).Data, Is.EqualTo("83600.00"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has column (positive)")]
+        [Test("Has column (positive)")]
         public void TestHasColumnPositive() =>
             Assert.IsTrue(page.DataGrid.HasColumn("Surface"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has column (negative)")]
+        [Test("Has column (negative)")]
         public void TestHasColumnNegative() =>
             Assert.IsFalse(page.DataGrid.HasColumn("PopulationWee"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has row (positive)")]
+        [Test("Has row (positive)")]
         public void TestHasRowPositive() =>
             Assert.IsTrue(page.DataGrid.HasRow("Population", "0"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has row (negative)")]
+        [Test("Has row (negative)")]
         public void TestHasRowNegative() =>
             Assert.IsFalse(page.DataGrid.HasRow("Population", "-900"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has cell (3 params positive)")]
+        [Test("Has cell (3 params positive)")]
         public void TestHasCell3ParamsPositive() =>
             Assert.IsTrue(page.DataGrid.HasCell("Population", "0", "Continent"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has cell (3 params negative)")]
+        [Test("Has cell (3 params negative)")]
         public void TestHasCell3ParamsNegative() =>
             Assert.IsFalse(page.DataGrid.HasCell("Population", "0", "Contsadsainent"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has cell (4 params positive)")]
+        [Test("Has cell (4 params positive)")]
         public void TestHasCell4ParamsPositive() =>
             Assert.IsTrue(page.DataGrid.HasCell("Population", "0", "Continent", "Antarctica"));
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Has cell (4 params negative)")]
+        [Test("Has cell (4 params negative)")]
         public void TestHasCell4ParamsNegative() =>
             Assert.IsFalse(page.DataGrid.HasCell("Population", "0", "Continent", "Weee"));
     }

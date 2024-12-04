@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Unicorn.Taf.Core.Testing.Attributes;
+using Unicorn.Taf.Core.Verification;
+using Unicorn.Taf.Core.Verification.Matchers;
 using Unicorn.UI.Core.Controls;
 using Unicorn.UI.Core.Driver;
 using Unicorn.UI.Web.Controls;
@@ -7,12 +9,12 @@ using Unicorn.UI.Web.Driver;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
 {
-    [TestFixture]
+    [Suite]
     public class WebSearchContextTests : WebTestsBase
     {
         private WebDriver WebDriver => DriverManager.Instance;
 
-        [OneTimeSetUp]
+        [BeforeSuite]
         public void Setup()
         {
             WebDriver.Get("https://jqueryui.com/resources/demos/datepicker/inline.html");

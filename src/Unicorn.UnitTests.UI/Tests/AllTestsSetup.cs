@@ -1,19 +1,12 @@
-﻿using NUnit.Framework;
+﻿using Unicorn.Taf.Core.Testing.Attributes;
 
 namespace Unicorn.UnitTests.UI.Tests
 {
-    [SetUpFixture]
-    internal class AllTestsSetup
+    [TestAssembly]
+    internal static class AllTestsSetup
     {
-        [OneTimeSetUp]
-        public void GlobalSetup()
-        {
-        }
-
-        [OneTimeTearDown]
-        public void GlobalTeardown()
-        {
+        [RunFinalize]
+        public static void GlobalTeardown() =>
             DriverManager.Instance.Close();
-        }
     }
 }

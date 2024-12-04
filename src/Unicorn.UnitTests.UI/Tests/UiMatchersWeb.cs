@@ -1,235 +1,204 @@
-﻿using NUnit.Framework;
-using Unicorn.UnitTests.UI.Gui.Web;
-using Uv = Unicorn.Taf.Core.Verification;
+﻿using Unicorn.UnitTests.UI.Gui.Web;
+using Unicorn.Taf.Core.Testing.Attributes;
+using Unicorn.Taf.Core.Verification;
 using Ui = Unicorn.UI.Core.Matchers.UI;
+using System;
 
 namespace Unicorn.UnitTests.UI.Tests
 {
-    [TestFixture]
+    [Suite]
     public class UiMatchersWeb : WebTestsBase
     {
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check WindowHasTitleMatcher")]
+        [Test("Check WindowHasTitleMatcher")]
         public void TestWindowHasTitleMatcherMatcher()
         {
             JqueryDialogPage dialogPage = NavigateToPage<JqueryDialogPage>();
-            Uv.Assert.That(dialogPage.Dialog, Ui.Window.HasTitle("Empty the recycle bin?"));
+            Assert.That(dialogPage.Dialog, Ui.Window.HasTitle("Empty the recycle bin?"));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check WindowHasTitleMatcher Negative")]
+        [Test("Check WindowHasTitleMatcher Negative")]
         public void TestWindowHasTitleMatcherMatcherNegative()
         {
             JqueryDialogPage dialogPage = NavigateToPage<JqueryDialogPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(dialogPage.Dialog, Ui.Window.HasTitle("weeee"));
-            });
+            AssertThrows(() => Assert.That(dialogPage.Dialog, Ui.Window.HasTitle("weeee")));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check ModalWindowHasTextMatcher")]
+        [Test("Check ModalWindowHasTextMatcher")]
         public void TestModalWindowHasTextMatcher()
         {
             JqueryDialogPage dialogPage = NavigateToPage<JqueryDialogPage>();
-            Uv.Assert.That(dialogPage.Dialog, Ui.Window.HasText(
+            Assert.That(dialogPage.Dialog, Ui.Window.HasText(
                 "These items will be permanently deleted and cannot be recovered. Are you sure?"));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check ModalWindowHasTextMatcher Negative")]
+        [Test("Check ModalWindowHasTextMatcher Negative")]
         public void TestModalWindowHasTextMatcherNegative()
         {
             JqueryDialogPage dialogPage = NavigateToPage<JqueryDialogPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(dialogPage.Dialog, Ui.Window.HasText("weee"));
-            });
+            AssertThrows(() => Assert.That(dialogPage.Dialog, Ui.Window.HasText("weee")));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasRowsCountMatcher")]
+        [Test("Check DataGridHasRowsCountMatcher")]
         public void TestDataGridHasRowsCountMatcher()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-            Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRowsCount(20));
+            Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRowsCount(20));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasRowsCountMatcher Negative")]
+        [Test("Check DataGridHasRowsCountMatcher Negative")]
         public void TestDataGridHasRowsCountMatcherNegative()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRowsCount(10));
-            });
+            AssertThrows(() => Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRowsCount(10)));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasRowMatcher")]
+        [Test("Check DataGridHasRowMatcher")]
         public void TestDataGridHasRowMatcher()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-            Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRow("Continent", "Asia"));
+            Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRow("Continent", "Asia"));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasRowMatcher Negative")]
+        [Test("Check DataGridHasRowMatcher Negative")]
         public void TestDataGridHasRowMatcherNegative()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRow("Continent", "weee"));
-            });
+            AssertThrows(() => Assert.That(gridPage.DataGrid, Ui.DataGrid.HasRow("Continent", "weee")));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasColumnMatcher")]
+        [Test("Check DataGridHasColumnMatcher")]
         public void TestDataGridHasColumnMatcher()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-            Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasColumn("Name"));
+            Assert.That(gridPage.DataGrid, Ui.DataGrid.HasColumn("Name"));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasColumnMatcher Negative")]
+        [Test("Check DataGridHasColumnMatcher Negative")]
         public void TestDataGridHasColumnMatcherNegative()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasColumn("weee"));
-            });
+            AssertThrows(() => Assert.That(gridPage.DataGrid, Ui.DataGrid.HasColumn("weee")));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasCellWithTextMatcher1")]
+        [Test("Check DataGridHasCellWithTextMatcher1")]
         public void TestDataGridHasCellWithTextMatcher1()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-            Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText("Continent", "Europe", "Name", "Albania"));
+            Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText("Continent", "Europe", "Name", "Albania"));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasCellWithTextMatcher1 Negative")]
+        [Test("Check DataGridHasCellWithTextMatcher1 Negative")]
         public void TestDataGridHasCellWithTextMatcher1Negative()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText("Continent", "Europe", "Name", "weee"));
-            });
+            AssertThrows(() => Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText("Continent", "Europe", "Name", "weee")));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasCellWithTextMatcher2")]
+        [Test("Check DataGridHasCellWithTextMatcher2")]
         public void TestDataGridHasCellWithTextMatcher2()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-            Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText(0, 1, "Aruba"));
+            Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText(0, 1, "Aruba"));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DataGridHasCellWithTextMatcher2 Negative")]
+        [Test("Check DataGridHasCellWithTextMatcher2 Negative")]
         public void TestDataGridHasCellWithTextMatcher2Negative()
         {
             JqueryDataGridPage gridPage = NavigateToPage<JqueryDataGridPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText(0, 1, "weee"));
-            });
+            AssertThrows(() => Assert.That(gridPage.DataGrid, Ui.DataGrid.HasCellWithText(0, 1, "weee")));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DropdownHasSelectedValueMatcher")]
+        [Test("Check DropdownHasSelectedValueMatcher")]
         public void TestDropdownHasSelectedValueMatcher()
         {
             JquerySelectPage selectPage = NavigateToPage<JquerySelectPage>();
-            Uv.Assert.That(selectPage.Dropdown, Ui.Dropdown.HasSelectedValue("Medium"));
+            Assert.That(selectPage.Dropdown, Ui.Dropdown.HasSelectedValue("Medium"));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check DropdownHasSelectedValueMatcher Negative")]
+        [Test("Check DropdownHasSelectedValueMatcher Negative")]
         public void TestDropdownHasSelectedValueMatcherNegative()
         {
             JquerySelectPage selectPage = NavigateToPage<JquerySelectPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(selectPage.Dropdown, Ui.Dropdown.HasSelectedValue("weee"));
-            });
+            AssertThrows(() => Assert.That(selectPage.Dropdown, Ui.Dropdown.HasSelectedValue("weee")));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check CheckboxCheckedMatcher")]
+        [Test("Check CheckboxCheckedMatcher")]
         public void TestCheckboxCheckedMatcher()
         {
             JqueryCheckboxRadioPage cboxPage = NavigateToPage<JqueryCheckboxRadioPage>();
             cboxPage.JqCheckboxToCheck1.JsClick();
-            Uv.Assert.That(cboxPage.JqCheckboxToCheck1, Ui.Checkbox.Checked());
+            Assert.That(cboxPage.JqCheckboxToCheck1, Ui.Checkbox.Checked());
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check CheckboxCheckedMatcher Negative")]
+        [Test("Check CheckboxCheckedMatcher Negative")]
         public void TestCheckboxCheckedMatcherNegative()
         {
             JqueryCheckboxRadioPage cboxPage = NavigateToPage<JqueryCheckboxRadioPage>();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(cboxPage.JqCheckbox, Ui.Checkbox.Checked());
-            });
+            AssertThrows(() => Assert.That(cboxPage.JqCheckbox, Ui.Checkbox.Checked()));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check CheckboxHasCheckStateMatcher")]
+        [Test("Check CheckboxHasCheckStateMatcher")]
         public void TestCheckboxHasCheckStateMatcher()
         {
             JqueryCheckboxRadioPage cboxPage = NavigateToPage<JqueryCheckboxRadioPage>();
-            Uv.Assert.That(cboxPage.JqCheckbox, Ui.Checkbox.HasCheckState(false));
+            Assert.That(cboxPage.JqCheckbox, Ui.Checkbox.HasCheckState(false));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check CheckboxHasCheckStateMatcher Negative")]
+        [Test("Check CheckboxHasCheckStateMatcher Negative")]
         public void TestCheckboxHasCheckStateMatcherNegative()
         {
             JqueryCheckboxRadioPage cboxPage = NavigateToPage<JqueryCheckboxRadioPage>();
             cboxPage.JqCheckboxToCheck2.JsClick();
-
-            Assert.Throws<Uv.AssertionException>(delegate
-            {
-                Uv.Assert.That(cboxPage.JqCheckboxToCheck2, Ui.Checkbox.HasCheckState(false));
-            });
+            AssertThrows(() => Assert.That(cboxPage.JqCheckboxToCheck2, Ui.Checkbox.HasCheckState(false)));
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check SelectedMatcher")]
+        [Test("Check SelectedMatcher")]
         public void TestSelectedMatcher()
         {
             JqueryCheckboxRadioPage cboxPage = NavigateToPage<JqueryCheckboxRadioPage>();
             cboxPage.JqRadioToSelect.JsClick();
-            Uv.Assert.That(cboxPage.JqRadioToSelect, Ui.Control.Selected());
+            Assert.That(cboxPage.JqRadioToSelect, Ui.Control.Selected());
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "Check SelectedMatcher Negative")]
+        [Test("Check SelectedMatcher Negative")]
         public void TestSelectedMatcherNegative()
         {
             JqueryCheckboxRadioPage cboxPage = NavigateToPage<JqueryCheckboxRadioPage>();
+            AssertThrows(() => Assert.That(cboxPage.JqRadio, Ui.Control.Selected()));
+        }
 
-            Assert.Throws<Uv.AssertionException>(delegate
+        private void AssertThrows(Action action)
+        {
+            try
             {
-                Uv.Assert.That(cboxPage.JqRadio, Ui.Control.Selected());
-            });
+                action();
+                throw new Exception("Test should fail with AssertionException");
+            }
+            catch (AssertionException)
+            {
+            }
         }
     }
 }

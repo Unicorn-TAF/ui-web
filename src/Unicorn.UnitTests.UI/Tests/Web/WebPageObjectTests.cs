@@ -1,11 +1,13 @@
-﻿using NUnit.Framework;
+﻿using Unicorn.Taf.Core.Testing.Attributes;
+using Unicorn.Taf.Core.Verification;
+using Unicorn.Taf.Core.Verification.Matchers;
 using Unicorn.UI.Core.PageObject;
 using Unicorn.UI.Web.Controls.Typified;
 using Unicorn.UnitTests.UI.Gui.Web;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
 {
-    [TestFixture]
+    [Suite]
     public class WebPageObjectTests : WebTestsBase
     {
         [Test]
@@ -43,7 +45,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         public void TestPageObjectControlsSearch()
         {
             JqueryCheckboxRadioPage page = NavigateToPage<JqueryCheckboxRadioPage>();
-            Assert.That(page.JqCheckbox, Is.TypeOf(typeof(Checkbox)));
+            Assert.That(page.JqCheckbox, Is.OfType(typeof(Checkbox)));
             Assert.That(page.JqCheckbox.GetAttribute("name"), Is.EqualTo("checkbox-1"));
         }
 

@@ -1,13 +1,14 @@
-﻿using NUnit.Framework;
+﻿using Unicorn.Taf.Core.Testing.Attributes;
+using Unicorn.Taf.Core.Verification;
 using Unicorn.UnitTests.UI.Gui.Web;
 
 namespace Unicorn.UnitTests.UI.Tests.Web
 {
-    [TestFixture]
+    [Suite]
     public class WebPageTests : WebTestsBase
     {
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "WebPage.Opened works for page with relative url only")]
+        [Test("WebPage.Opened works for page with relative url only")]
         public void TestWebPageOpenedWorksForPageWithRelativeUrlOnly()
         {
             JqueryDataGridPage page = NavigateToPage<JqueryDataGridPage>();
@@ -15,7 +16,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "WebPage.Opened works for page with relative url and title")]
+        [Test("WebPage.Opened works for page with relative url and title")]
         public void TestWebPageOpenedWorksForPageWithRelativeUrlAndTitle()
         {
             JquerySelectPage page = NavigateToPage<JquerySelectPage>();
@@ -23,7 +24,7 @@ namespace Unicorn.UnitTests.UI.Tests.Web
         }
 
         [Author("Vitaliy Dobriyan")]
-        [Test(Description = "WebPage.Opened fails if page is not opened")]
+        [Test("WebPage.Opened fails if page is not opened")]
         public void TestWebPageOpenedFailsIfPageIsNotOpened()
         {
             NavigateToPage<JquerySelectPage>();
