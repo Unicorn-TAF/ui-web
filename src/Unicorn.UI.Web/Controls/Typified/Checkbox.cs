@@ -37,7 +37,7 @@ namespace Unicorn.UI.Web.Controls.Typified
 
             Click();
 
-            ULog.Trace("Checked");
+            ULog.Trace("Checkbox has been checked");
 
             return true;
         }
@@ -57,7 +57,7 @@ namespace Unicorn.UI.Web.Controls.Typified
             }
 
             Click();
-            ULog.Trace("Unchecked");
+            ULog.Trace("Checkbox has been unchecked");
 
             return true;
         }

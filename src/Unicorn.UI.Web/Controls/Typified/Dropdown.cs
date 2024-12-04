@@ -101,7 +101,7 @@ namespace Unicorn.UI.Web.Controls.Typified
             else
             {
                 optionToSelect.Click();
-                ULog.Trace("Item was selected");
+                ULog.Trace("Item has been selected");
                 return true;
             }
         }
