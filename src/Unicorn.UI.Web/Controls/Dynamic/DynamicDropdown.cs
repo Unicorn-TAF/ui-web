@@ -111,11 +111,11 @@ namespace Unicorn.UI.Web.Controls.Dynamic
         /// <returns>true - if dropdown has expanded; false - if dropdown was already expanded</returns>
         public virtual bool Expand()
         {
-            ULog.Trace("\tExpanding dropdown");
+            ULog.Trace("Expanding dropdown");
 
             if (Expanded)
             {
-                ULog.Trace("\t\tNo need to expand (expanded by default)");
+                ULog.Trace("  No need to expand (expanded by default)");
                 return false;
             }
 
@@ -127,7 +127,7 @@ namespace Unicorn.UI.Web.Controls.Dynamic
             }
 
             WaitForLoading(TimeSpan.FromSeconds(60));
-            ULog.Trace("\t\tExpanded");
+            ULog.Trace("  Dropdown has been expanded");
             return true;
         }
 
@@ -137,16 +137,16 @@ namespace Unicorn.UI.Web.Controls.Dynamic
         /// <returns>true - if dropdown has collapsed; false - if dropdown was already collapsed</returns>
         public virtual bool Collapse()
         {
-            ULog.Trace("\tCollapsing dropdown");
+            ULog.Trace("Collapsing dropdown");
 
             if (!Expanded)
             {
-                ULog.Trace("\t\tNo need to collapse (collapsed by default)");
+                ULog.Trace("  No need to collapse (collapsed by default)");
                 return false;
             }
 
             GetExpandCollapse().Click();
-            ULog.Trace("\t\tCollapsed");
+            ULog.Trace("  Dropdown has been collapsed");
             return true;
         }
 
@@ -181,7 +181,7 @@ namespace Unicorn.UI.Web.Controls.Dynamic
 
             if (itemName.Equals(SelectedValue))
             {
-                ULog.Trace("\tNo need to select (the item is selected by default)");
+                ULog.Trace("No need to select (the item is selected by default)");
                 return false;
             }
 
@@ -201,7 +201,7 @@ namespace Unicorn.UI.Web.Controls.Dynamic
 
             Collapse();
 
-            ULog.Trace("\tItem has selected");
+            ULog.Trace("Item has been selected");
 
             return true;
         }

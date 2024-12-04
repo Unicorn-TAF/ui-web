@@ -29,7 +29,7 @@ namespace Unicorn.UI.Web.Controls.Typified
 
             Instance.Click();
 
-            ULog.Trace("Selected");
+            ULog.Trace("Radio has been selected");
 
             return true;
         }
