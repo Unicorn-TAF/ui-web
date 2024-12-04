@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IO;
 using Unicorn.Taf.Core.Logging;
-using Unicorn.Taf.Core.Testing;
+using Unicorn.UI.Core;
 using Unicorn.UI.Web.Driver;
 
 namespace Unicorn.UI.Web
@@ -9,13 +8,9 @@ namespace Unicorn.UI.Web
     /// <summary>
     /// Provides ability to take web browser screenshots (works on both UI and headless modes).
     /// </summary>
-    public class WebScreenshotTaker
+    public class WebScreenshotTaker : ScreenshotTakerBase, IDisposable
     {
         private const string LogPrefix = nameof(WebScreenshotTaker);
-        private const int MaxLength = 250;
-        private const string Extension = "png";
-
-        private readonly string _screenshotsDir;
         private readonly WebDriver _driver;
 
         /// <summary>
@@ -23,9 +18,7 @@ namespace Unicorn.UI.Web
         /// Default directory is ".\Screenshots" (created automatically if it does not exist).
         /// </summary>
         /// <param name="driver"><see cref="WebDriver"/> instance</param>
-        public WebScreenshotTaker(WebDriver driver) : this(
-            driver,
-            Path.Combine(Path.GetDirectoryName(new Uri(typeof(WebScreenshotTaker).Assembly.Location).LocalPath), "Screenshots"))
+        public WebScreenshotTaker(WebDriver driver) : this(driver, DefaultDirectory)
         {
         }
 
@@ -34,16 +27,15 @@ namespace Unicorn.UI.Web
         /// </summary>
         /// <param name="driver"><see cref="WebDriver"/> instance</param>
         /// <param name="screenshotsDir">directory to save screenshots to</param>
-        public WebScreenshotTaker(WebDriver driver, string screenshotsDir)
+        public WebScreenshotTaker(WebDriver driver, string screenshotsDir) : base(screenshotsDir)
         {
             _driver = driver;
-            _screenshotsDir = screenshotsDir;
-
-            if (!Directory.Exists(screenshotsDir))
-            {
-                Directory.CreateDirectory(screenshotsDir);
-            }
         }
+
+        /// <summary>
+        /// Gets image format string.
+        /// </summary>
+        protected override string ImageFormat { get; } = "png";
 
         /// <summary>
         /// Takes screenshot and saves by specified path as png file.
@@ -63,22 +55,15 @@ namespace Unicorn.UI.Web
 
             try
             {
-                ULog.Debug(LogPrefix + ": Saving browser print screen...");
+                ULog.Debug("{0}: Saving browser print screen...", LogPrefix);
 
-                string filePath = Path.Combine(folder, fileName);
-
-                if (filePath.Length > MaxLength)
-                {
-                    filePath = filePath.Substring(0, MaxLength - 1) + "~";
-                }
-
-                filePath += "." + Extension;
+                string filePath = BuildFileName(folder, fileName);
                 printScreen.SaveAsFile(filePath);
                 return filePath;
             }
             catch (Exception e)
             {
-                ULog.Warn(LogPrefix + ": Failed to save browser print screen: \n{0}", e);
+                ULog.Warn("{0}: Failed to save browser print screen: \n{1}", LogPrefix, e);
                 return string.Empty;
             }
         }
@@ -88,47 +73,27 @@ namespace Unicorn.UI.Web
         /// </summary>
         /// <param name="fileName">screenshot file name without extension</param>
         /// <returns>path to the screenshot file</returns>
-        public string TakeScreenshot(string fileName) => TakeScreenshot(_screenshotsDir, fileName);
+        public override string TakeScreenshot(string fileName) => TakeScreenshot(ScreenshotsDir, fileName);
 
         /// <summary>
-        /// Subscribe to Unicorn events.
+        /// Unsubscribes screenshotter from taf events if was subscribed.
         /// </summary>
-        public void ScribeToTafEvents()
-        {
-            Test.OnTestFail += TakeScreenshot;
-            SuiteMethod.OnSuiteMethodFail += TakeScreenshot;
-        }
-
-        /// <summary>
-        /// Unsubscribe from Unicorn events.
-        /// </summary>
-        public void UnsubscribeFromTafEvents()
-        {
-            Test.OnTestFail -= TakeScreenshot;
-            SuiteMethod.OnSuiteMethodFail -= TakeScreenshot;
-        }
+        public void Dispose() =>
+            UnsubscribeFromTafEvents();
 
         private OpenQA.Selenium.Screenshot GetScreenshot()
         {
             try
             {
-                ULog.Debug(LogPrefix + ": Creating browser print screen...");
+                ULog.Debug("{0}: Creating browser print screen...", LogPrefix);
 
                 return (_driver.SeleniumDriver as OpenQA.Selenium.ITakesScreenshot).GetScreenshot();
             }
             catch (Exception e)
             {
-                ULog.Warn(LogPrefix + ": Failed to get browser print screen: \n{0}", e);
+                ULog.Warn("{0}: Failed to get browser print screen: \n{1}", LogPrefix, e);
                 return null;
             }
-        }
-
-        private void TakeScreenshot(SuiteMethod suiteMethod)
-        {
-            var mime = "image/" + Extension;
-            var screenshotPath = TakeScreenshot(suiteMethod.Outcome.FullMethodName);
-
-            suiteMethod.Outcome.Attachments.Add(new Attachment("Screenshot", mime, screenshotPath));
         }
     }
 }

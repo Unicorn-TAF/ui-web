@@ -22,6 +22,19 @@ namespace Unicorn.UI.Web.Driver
         /// </summary>
         protected override Type ControlsBaseType => typeof(WebControl);
 
+        /// <summary>
+        /// Gets or sets current implicit wait timeout as a <see cref="TimeSpan"/> for the underlying selenium driver.
+        /// </summary>
+        protected override TimeSpan ImplicitWaitTimeout 
+        { 
+            get => seleniumDriver.Manage().Timeouts().ImplicitWait; 
+            set => seleniumDriver.Manage().Timeouts().ImplicitWait = value; 
+        }
+
+        private IWebDriver seleniumDriver => SearchContext is IWebDriver ?
+                (IWebDriver)SearchContext :
+                ((IWrapsDriver)SearchContext).WrappedDriver;
+
         #region "Helpers"
 
         /// <summary>
@@ -81,19 +94,6 @@ namespace Unicorn.UI.Web.Driver
         /// <returns><see cref="IWebElement"/> instance</returns>
         protected IWebElement GetNativeControlFromParentContext(ByLocator locator) =>
             GetNativeControlFromContext(locator, ParentSearchContext.SearchContext);
-
-        /// <summary>
-        /// Set current implicitly wait timeout value.
-        /// </summary>
-        /// <param name="timeout">new implicit timeout value</param>
-        protected override void SetImplicitlyWait(TimeSpan timeout)
-        {
-            IWebDriver driver = SearchContext is IWebDriver ?
-                (IWebDriver)SearchContext :
-                ((IWrapsDriver)SearchContext).WrappedDriver;
-
-            driver.Manage().Timeouts().ImplicitWait = timeout;
-        }
 
         private IWebElement GetNativeControlFromContext(ByLocator locator, OpenQA.Selenium.ISearchContext context)
         {
